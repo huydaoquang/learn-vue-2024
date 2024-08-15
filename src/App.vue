@@ -1,86 +1,34 @@
 <template>
-	<div id="app" class="flex justify-center items-center h-screen">
-		<button
-			@click="showModal = true"
-			class="bg-green-500 text-white px-2 py-1 rounded-md"
-		>
-			Open Modal
-		</button>
-		<Modal :isVisible="showModal" @close="showModal = false">
-			<div class="flex flex-col">
-				<h2 class="font-bold">ダウンロード情報</h2>
-				<div class="border-2 border-black border-opacity-60 p-5 pb-12">
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-						<p>
-							<span class="font-bold">ダウンロード日時</span> &nbsp;
-							2024/01/0112:00:00
-						</p>
-						<p>
-							<span class="font-bold">ダウンロード日時</span> &nbsp;
-							XXXXXXXXXXXXX
-						</p>
-						<p>
-							<span class="font-bold">ダウンロード日時</span> &nbsp; 店舗・DPT
-						</p>
-					</div>
-
-					<div class="md:p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-						<div>
-							<span class="font-bold">店舗</span>
-							<div
-								class="border border-black border-opacity-50 grid grid-cols-1 md:grid-cols-2 pl-5 p-2 pb-9 gap-2"
-							>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-							</div>
-						</div>
-						<div>
-							<span class="font-bold">DPT</span>
-							<div
-								class="border border-black border-opacity-50 grid grid-cols-1 md:grid-cols-2 pl-5 p-2 pb-9 gap-2"
-							>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-								<span>0003-XXXXXXXX</span>
-							</div>
-						</div>
-					</div>
-					<p>
-						<span class="font-bold">ダウンロードファイル</span> &nbsp;
-						XXXXXXXXXXXXXXX.xlsx
-					</p>
-				</div>
-				<h2 class="mt-5 font-bold">登録情報</h2>
-				<div class="border-2 border-black border-opacity-60 p-8">
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-						<p>
-							<span class="font-bold">登録日時</span> &nbsp; 2024/01/0112:00:00
-						</p>
-						<p><span class="font-bold">登録者 </span> &nbsp; XXXXXXXXXXXXX</p>
-						<p>
-							<span class="font-bold">登録ファイル</span> &nbsp;
-							XXXXXXXXXXXXXXX.xlsx
-						</p>
-					</div>
-				</div>
+	<div class="flex justify-center items-center flex-col h-screen">
+		<div class="w-[500px]">
+			<h1>{{ title }}</h1>
+			<input
+				v-model="title"
+				type="email"
+				id="email"
+				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+			/>
+			<div class="flex gap-5">
+				<button :disabled="isDisabled" class="bg-red-500">
+					button disable
+				</button>
+				<button :disabled="isNotDisabled" class="bg-red-500">button</button>
 			</div>
-		</Modal>
+			<a :href="link" class="underline text-sky-300">click to google.com</a>
+			<img :src="imgLink" alt="" />
+		</div>
 	</div>
 </template>
 
 <script>
-import Modal from "./components/modals/ModalDetail.vue";
-
 export default {
-	components: {
-		Modal,
-	},
 	data() {
 		return {
-			showModal: false,
+			imgLink:
+				"https://res.klook.com/image/upload/c_fill,w_1265,h_712/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/tsah7c9evnal289z5fig.webp",
+			link: "https://google.com",
+			isDisabled: true,
+			isNotDisabled: false,
 		};
 	},
 };
