@@ -1,22 +1,25 @@
 <template>
 	<div class="flex justify-center items-center flex-col h-screen">
-		<div class="w-[500px]">
-			<h1>{{ title }}</h1>
-			<input
-				v-model="title"
-				type="email"
-				id="email"
-				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-			/>
-			<div class="flex gap-5">
-				<button :disabled="isDisabled" class="bg-red-500">
-					button disable
-				</button>
-				<button :disabled="isNotDisabled" class="bg-red-500">button</button>
-			</div>
-			<a :href="link" class="underline text-sky-300">click to google.com</a>
-			<img :src="imgLink" alt="" />
-		</div>
+		<p>{{ hello("huydaoquang") }}</p>
+		<p>{{ xinChao("huy") }}</p>
+
+		<button
+			@click="tangSo"
+			type="button"
+			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+		>
+			tang
+		</button>
+		<button
+			@click="giamSo"
+			type="button"
+			:disabled="isDisabled"
+			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+		>
+			giam
+		</button>
+
+		<span>{{ count }}</span>
 	</div>
 </template>
 
@@ -24,12 +27,28 @@
 export default {
 	data() {
 		return {
-			imgLink:
-				"https://res.klook.com/image/upload/c_fill,w_1265,h_712/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/tsah7c9evnal289z5fig.webp",
-			link: "https://google.com",
-			isDisabled: true,
-			isNotDisabled: false,
+			full_name: "daoquanghuy",
+			count: 0,
+			isDisabled: false,
 		};
+	},
+	methods: {
+		hello(fullName) {
+			return "xin chao " + fullName;
+		},
+		xinChao: (name) => {
+			return "xin chao " + name;
+		},
+		tangSo() {
+			this.count++;
+			this.isDisabled = this.count <= 0 ? true : false;
+		},
+		giamSo() {
+			if (this.count > 0) {
+				this.isDisabled = this.count <= 0 ? true : false;
+				this.count--;
+			}
+		},
 	},
 };
 </script>
