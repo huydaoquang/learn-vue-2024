@@ -1,43 +1,41 @@
 <template>
 	<div class="flex justify-center items-center h-screen flex-col">
-		<p>methods: {{ fullName() }}</p>
-		<p>computed: {{ fullNameComputed }}</p>
-		<button @click="changeFullName">Click</button>
-
-		<p>{{ count }}</p>
+		<div class="grid grid-cols-2 gap-2">
+			<div
+				class="w-[180px] h-[180px] bg-sky-500 flex items-center justify-center text-white"
+				@mouseover="onLogEvent"
+			>
+				Mouse over event
+			</div>
+			<div
+				@mouseleave="onLogEvent"
+				class="w-[180px] h-[180px] bg-sky-500 flex items-center justify-center text-white"
+			>
+				Mouse leave
+			</div>
+			<div
+				@dblclick="onLogEvent"
+				class="w-[180px] h-[180px] bg-sky-500 flex items-center justify-center text-white"
+			>
+				Dobule click event
+			</div>
+			<div
+				class="w-[180px] h-[180px] bg-sky-500 flex items-center justify-center text-white"
+			>
+				Mouse over event
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
 	data() {
-		return {
-			count: 0,
-			firstName: "",
-			lastName: "",
-		};
+		return {};
 	},
 	methods: {
-		tangSo() {
-			this.count++;
-		},
-		fullName() {
-			console.log("fullName Method");
-			return this.firstName + " " + this.lastName;
-		},
-		changeFullName() {
-			this.fullNameComputed = "huy.daoquang";
-		},
-	},
-	computed: {
-		fullNameComputed: {
-			get() {
-				return this.firstName + " " + this.lastName;
-			},
-			set(value) {
-				console.log("fullName computed");
-				this.firstName = value;
-			},
+		onLogEvent(e) {
+			console.log("run event::::::::::", e);
 		},
 	},
 };
