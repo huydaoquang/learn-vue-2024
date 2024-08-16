@@ -1,10 +1,10 @@
 <template>
-	<div class="flex justify-center items-center h-screen">
-		<form action="" @submit.prevent="formSubmit" class="flex flex-col">
-			name: <input type="text" v-model="formData.name" /> email:
-			<input type="text" v-model="formData.email" />
-			<button>submit</button>
-		</form>
+	<div class="flex justify-center items-center h-screen flex-col">
+		<p>methods: {{ fullName() }}</p>
+		<p>computed: {{ fullNameComputed }}</p>
+		<button @click="changeFullName">Click</button>
+
+		<p>{{ count }}</p>
 	</div>
 </template>
 
@@ -12,15 +12,32 @@
 export default {
 	data() {
 		return {
-			formData: {
-				name: "",
-				email: "",
-			},
+			count: 0,
+			firstName: "",
+			lastName: "",
 		};
 	},
 	methods: {
-		formSubmit() {
-			console.log(this.formData);
+		tangSo() {
+			this.count++;
+		},
+		fullName() {
+			console.log("fullName Method");
+			return this.firstName + " " + this.lastName;
+		},
+		changeFullName() {
+			this.fullNameComputed = "huy.daoquang";
+		},
+	},
+	computed: {
+		fullNameComputed: {
+			get() {
+				return this.firstName + " " + this.lastName;
+			},
+			set(value) {
+				console.log("fullName computed");
+				this.firstName = value;
+			},
 		},
 	},
 };
